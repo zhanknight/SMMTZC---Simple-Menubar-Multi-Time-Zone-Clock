@@ -31,12 +31,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     // functions for getting and displaying the time, quitting app
     func updateClock() {
-        let now = Date()
-        let normalTime = (DateFormatter.localizedString(
-            from: now,
-            dateStyle: .medium,
-            timeStyle: .short))
-        statusDisplay?.title = "\(normalTime)"
+        
+        let currentDate = Date()
+        //Indo time
+        let indoTime = DateFormatter()
+        indoTime.timeStyle = .short
+        indoTime.dateFormat = "M/d h:mma"
+        indoTime.timeZone = TimeZone(abbreviation: "WIB")
+        //NC time
+        let carolinaTime = DateFormatter()
+        carolinaTime.timeStyle = .short
+        carolinaTime.dateFormat = "M/d h:mma"
+        carolinaTime.timeZone = TimeZone(abbreviation: "EST")
+        // set the display
+        statusDisplay?.title = "ID: \(indoTime.string(from: currentDate)) || NC: \(carolinaTime.string(from: currentDate))"
     }
     func quitApp() {
         NSApplication.shared().terminate(self)
