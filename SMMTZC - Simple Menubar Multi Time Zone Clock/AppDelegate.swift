@@ -11,6 +11,12 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
+    //experiments in options windows
+    var optionsWindow = OptionsWindow()
+    var timezone1 : String = ""
+    
+    
+    
     // Create something for the statusbar
     var statusDisplay : NSStatusItem? = nil
     
@@ -48,7 +54,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusDisplay?.title = "ID: \(indoTime.string(from: currentDate)) || NC: \(carolinaTime.string(from: currentDate))"
     }
     func optionWindow() {
-        
+        optionsWindow.showWindow(Any?)
     }
     func quitApp() {
         NSApplication.shared().terminate(self)
