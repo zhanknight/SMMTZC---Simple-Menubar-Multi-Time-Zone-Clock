@@ -22,6 +22,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         // Create a simple drop dpwn menu for the display
         let dropMenu = NSMenu()
+        dropMenu.addItem(NSMenuItem(title: "Options..", action: #selector(AppDelegate.optionWindow), keyEquivalent: "o"))
         dropMenu.addItem(NSMenuItem(title: "Quit SMMTZC", action: #selector(AppDelegate.quitApp), keyEquivalent: "q"))
         statusDisplay?.menu = dropMenu
         
@@ -45,6 +46,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         carolinaTime.timeZone = TimeZone(abbreviation: "EST")
         // set the display
         statusDisplay?.title = "ID: \(indoTime.string(from: currentDate)) || NC: \(carolinaTime.string(from: currentDate))"
+    }
+    func optionWindow() {
+        
     }
     func quitApp() {
         NSApplication.shared().terminate(self)
