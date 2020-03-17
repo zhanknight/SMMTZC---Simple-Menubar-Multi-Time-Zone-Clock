@@ -17,7 +17,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
         // Make an object of it and give it a variable length
-        statusDisplay = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
+        statusDisplay = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         statusDisplay?.title = "SMMTZC"
         
         // Create a simple drop dpwn menu for the display
@@ -26,11 +26,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusDisplay?.menu = dropMenu
         
         // Start a timer to keep updating the clock every 5 seconds
-        var timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(self.updateClock), userInfo: nil, repeats: true)
+        _ = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(self.updateClock), userInfo: nil, repeats: true)
     }
     
     // functions for getting and displaying the time, quitting app
-    func updateClock() {
+    @objc func updateClock() {
         
         let currentDate = Date()
         //Indo time
@@ -46,8 +46,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // set the display
         statusDisplay?.title = "ID: \(indoTime.string(from: currentDate)) || NC: \(carolinaTime.string(from: currentDate))"
     }
-    func quitApp() {
-        NSApplication.shared().terminate(self)
+    @objc func quitApp() {
+        NSApplication.shared.terminate(self)
     }
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
