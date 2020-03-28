@@ -1,6 +1,7 @@
 //
 //  AppDelegate.swift
 //  SimpleMenubarClock2
+//  the Swift 5 update to SMMTZC
 //
 //  Created by Zhan Knight on 3/27/20.
 //  Copyright © 2020 Zhan Knight. All rights reserved.
