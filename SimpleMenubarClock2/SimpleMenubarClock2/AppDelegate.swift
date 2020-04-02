@@ -3,8 +3,8 @@
 //  SimpleMenubarClock2
 //  the Swift 5 update to SMMTZC
 //
-//  Created by Zhan Knight on 3/27/20.
-//  Copyright © 2020 Zhan Knight. All rights reserved.
+//  Created by zhanknight on 3/27/20.
+//
 //
 
 import Cocoa
@@ -13,6 +13,7 @@ import SwiftUI
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     var statusBarItem: NSStatusItem!
+    var clockTimer: Timer?
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
 
@@ -24,15 +25,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let statusBarMenu = NSMenu(title: "SMMTZ Menu Bar")
         statusBarItem.menu = statusBarMenu
 
+        // options not implemented yet
         statusBarMenu.addItem(
             withTitle: "Options..",
             action: #selector(AppDelegate.smmtzOptions),
-            keyEquivalent: "")
+            keyEquivalent: "O")
 
         statusBarMenu.addItem(
             withTitle: "Quit",
             action: #selector(AppDelegate.smmtzQuit),
-            keyEquivalent: "")
+            keyEquivalent: "Q")
+        
+        
+    // timer that updates clock display every 2 seconds
+    // is there a better way to do this than a timer
+    // calling clockDisplay() over and over again?
+        
+        clockTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(clockDisplay), userInfo: nil, repeats: true)
+    
     }
 
 
@@ -45,30 +55,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         print("TIME IS A HUMAN CONSTRUCT")
         NSApplication.shared.terminate(self)
     }
-
-    // this is the old Swift 3 code I wrote while serving in Peace Corps Indonesia
-    // TODO rewrite in Swift 5 and make better
-   // func updateClock() {
-   //
-   //     let currentDate = Date()
-   //     //Indo time
-   //     let indoTime = DateFormatter()
-   //     indoTime.timeStyle = .short
-   //     indoTime.dateFormat = "M/d h:mma"
-   //     indoTime.timeZone = TimeZone(abbreviation: "WIB")
-   //     //NC time
-   //     let carolinaTime = DateFormatter()
-   //     carolinaTime.timeStyle = .short
-   //     carolinaTime.dateFormat = "M/d h:mma"
-   //     carolinaTime.timeZone = TimeZone(abbreviation: "EST")
-   //     // set the display
-   //     statusDisplay?.title = "ID: \(indoTime.string(from: currentDate)) || NC: \(carolinaTime.string(from: currentDate))"
-   //  }
+   
+  // this is the actual clock display
+  // currently hard coded to show time in Jakarta
+  // TODO: Make this dynamic, user selectable!
+    
+    @objc func clockDisplay() {
+        let indoTime = DateFormatter()
+        indoTime.timeZone = TimeZone(abbreviation: "ICT")
+        indoTime.timeStyle = .short
+        statusBarItem.button?.title = "Indonesia: \(indoTime.string(from:Date()))"
+     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
-
 
 }
 
