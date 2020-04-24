@@ -2,7 +2,7 @@
 
 A simple menubar application to show the time in different time zones. 
 
-![Image of SMMTZC](img/github_banner.png)
+![Image of SMMTZC](img/screenshot.png)
 
 SMMTZ was born out of the need for an easy way to glance at the time in multiple timezones.
 The standard MacOS clock shows only one time zone, but what if you frequently communicate with people in two time zones? Or three? 
