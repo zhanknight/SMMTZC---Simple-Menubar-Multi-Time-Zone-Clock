@@ -13,6 +13,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var statusBarItem: NSStatusItem!
     var clockTimer: Timer?
     var selectedZone = "SMMTZ"
+    var tzName: String = "SMMTZ"
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
@@ -49,6 +50,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @objc func setNewZone( sender : NSMenuItem ) {
         selectedZone = sender.keyEquivalent
+        tzName = sender.title
     }
     
     @objc func clockDisplay() {
@@ -63,7 +65,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 let time = DateFormatter()
                 time.timeZone = TimeZone(abbreviation: selectedZone)
                 time.timeStyle = .short
-                statusBarItem.button?.title = "\(selectedZone): \(time.string(from:Date()))"
+                statusBarItem.button?.title = "\(tzName): \(time.string(from:Date()))"
      }
     }
     
@@ -75,4 +77,3 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationWillTerminate(_ aNotification: Notification) {
     }
 }
-
