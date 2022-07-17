@@ -9,7 +9,5 @@ The standard MacOS clock shows only one time zone, but what if you frequently co
 
 SMMTZ was originally written in Swift 3 while I was serving in the Peace Corps in Indonesia, but frequently communicating with family and colleagues in North Carolina, New Mexico, and South Korea. I was not a talented Swift developer then, and I am not a talented Swift developer now - I'm just using it to solve this problem for myself. 
 
-SMMTZ has recently been updated from Swift 3 to Swift 5. *It currently displays one extra clock in the menubar. Three time zones for this clock are selectable from a simple drop-down menu. They are hard coded to the time zones I check most often - Indonesia, New Mexico, and South Korea.* 
-
 **Are you a more talented Swift developer than me?** Feel free to contribute! 
 
