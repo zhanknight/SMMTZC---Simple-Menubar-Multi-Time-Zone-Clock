@@ -26,14 +26,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let mainOptionsMenu = NSMenuItem(title: "Zones", action: nil, keyEquivalent: "")
         statusBarMenu.addItem(mainOptionsMenu)
         statusBarMenu.setSubmenu(subOptionsMenu, for: mainOptionsMenu)
+        
+        let tzList = TimeZone.abbreviationDictionary
 
-        // on clicking these options, need to set the timezone abbreviation (using the keyEquivalent to hold time string) and pass to clockdisplay() -> probably a better way to pass args
-        // Okay this is obviously not ideal, need to switch to using UST and build some kind of automatic DST check/adjust
-        // is there a library out there I can import to allow searching geographically and grabbing appropriate UST offset?
-        // leaving like this for now
-        subOptionsMenu.addItem(NSMenuItem(title: "Indonesia", action: #selector(setNewZone), keyEquivalent: "ICT"))
-        subOptionsMenu.addItem(NSMenuItem(title: "New Mexico", action: #selector(setNewZone), keyEquivalent: "MST"))
-        subOptionsMenu.addItem(NSMenuItem(title: "Korea", action: #selector(setNewZone), keyEquivalent: "KST"))
+        tzList.forEach { key, value in
+            subOptionsMenu.addItem(NSMenuItem(title: "\(value)", action: #selector(setNewZone), keyEquivalent: "\(key)"))
+        }
         
         statusBarItem.menu = statusBarMenu
 
